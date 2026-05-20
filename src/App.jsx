@@ -9,10 +9,10 @@ import {
 import {
   SiMongodb, SiMysql, SiTailwindcss, SiExpress,
   SiJavascript, SiScikitlearn, SiPandas, SiNumpy,
-  SiPlotly, SiJupyter, SiVisualstudiocode, SiPostman,
+  SiPlotly, SiJupyter, SiPostman,
   SiNetlify, SiStreamlit, SiCplusplus,
 } from "react-icons/si";
-
+import { VscVscode } from "react-icons/vsc";
 /* ─── DATA ─────────────────────────────────────────── */
 
 const NAV_LINKS = [
@@ -59,7 +59,7 @@ const SKILLS = [
     items: [
       { name: "GitHub",    icon: <FaGithub />,          color: "#181717" },
       { name: "Jupyter",   icon: <SiJupyter />,         color: "#f37626" },
-      { name: "VS Code",   icon: <SiVisualstudiocode />,color: "#007acc" },
+      { name: "VS Code", icon: <VscVscode />, color: "#007acc" },
       { name: "Postman",   icon: <SiPostman />,         color: "#ff6c37" },
       { name: "Netlify",   icon: <SiNetlify />,         color: "#00c7b7" },
       { name: "Streamlit", icon: <SiStreamlit />,       color: "#ff4b4b" },
@@ -264,7 +264,7 @@ const SKILLS_WITH_LEVEL = [
     items: [
       { name: "GitHub",    icon: <FaGithub />,          color: "#6366f1", level: 85 },
       { name: "Jupyter",   icon: <SiJupyter />,         color: "#f37626", level: 88 },
-      { name: "VS Code",   icon: <SiVisualstudiocode />,color: "#007acc", level: 90 },
+      { name: "VS Code",   icon: <VscVscode />,color: "#007acc", level: 90 },
       { name: "Postman",   icon: <SiPostman />,         color: "#ff6c37", level: 75 },
       { name: "Netlify",   icon: <SiNetlify />,         color: "#00c7b7", level: 78 },
       { name: "Streamlit", icon: <SiStreamlit />,       color: "#ff4b4b", level: 80 },
