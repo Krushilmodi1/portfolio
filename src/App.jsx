@@ -9,26 +9,35 @@ import profilePic from "./profile.jpg";
 import toast, { Toaster } from "react-hot-toast";
 import "./index.css";
 import {
+  SiJavascript,
+  SiMysql,
+  SiScikitlearn,
+  SiPandas,
+  SiNumpy,
+  SiPlotly,
+  SiExpress,
+  SiTailwindcss,
+  SiMongodb,
+  SiJupyter,
+  SiVisualstudiocode,
+  SiPostman,
+  SiNetlify,
+  SiStreamlit,
+  SiCplusplus,
+} from "react-icons/si";
+
+import {
+  FaPython,
+  FaJava,
   FaReact,
   FaNodeJs,
-  FaJava,
-  FaPython,
-  FaHtml5,
-  FaCss3Alt,
   FaGithub,
-} from "react-icons/fa"
-import {
-  SiJavascript,
-  SiTailwindcss,
-  SiRedux,
-  SiSpringboot,
-  SiDjango,
-  SiPhp,
-  SiMongodb,
-  SiMysql,
-  SiSocketdotio,
-  SiFlutter,
-} from "react-icons/si";
+  FaBrain,
+  FaRobot,
+  FaServer,
+  FaChartBar,
+  FaProjectDiagram,
+} from "react-icons/fa";
 
 // ─── Typing Effect ────────────────────────────────────────────────────────────
 function useTypingEffect(words, speed = 100, pause = 1800) {
@@ -81,43 +90,51 @@ function useScrollReveal() {
 //skill
 const SKILLS = [
   {
-    category: "FRONTEND",
+    cat: "Programming",
     items: [
-      { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
-      { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
-      { name: "Redux", icon: <SiRedux className="text-purple-500" /> },
-      { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
-      { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
-      { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
+      { name: "Python", icon: <FaPython />, color: "#3776ab" },
+      { name: "Java", icon: <FaJava />, color: "#f89820" },
+      { name: "JavaScript", icon: <SiJavascript />, color: "#f7df1e" },
+      { name: "SQL", icon: <SiMysql />, color: "#4479a1" },
+      { name: "C++", icon: <SiCplusplus />, color: "#00599c" },
     ],
   },
 
   {
-    category: "BACKEND",
+    cat: "AI / Machine Learning",
     items: [
-      { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
-      { name: "Spring Boot", icon: <SiSpringboot className="text-green-600" /> },
-      { name: "Java", icon: <FaJava className="text-orange-500" /> },
-      { name: "Python", icon: <FaPython className="text-blue-500" /> },
-      { name: "Django", icon: <SiDjango className="text-green-900 dark:text-white" /> },
-      { name: "PHP", icon: <SiPhp className="text-indigo-400" /> },
+      { name: "Scikit-learn", icon: <SiScikitlearn />, color: "#f7931e" },
+      { name: "Pandas", icon: <SiPandas />, color: "#150458" },
+      { name: "NumPy", icon: <SiNumpy />, color: "#013243" },
+      { name: "Matplotlib", icon: <SiPlotly />, color: "#11557c" },
+      { name: "EDA", icon: <FaChartBar />, color: "#6366f1" },
+      { name: "Random Forest", icon: <FaBrain />, color: "#22c55e" },
+      { name: "SVM", icon: <FaRobot />, color: "#8b5cf6" },
+      { name: "K-Means", icon: <FaProjectDiagram />, color: "#f97316" },
     ],
   },
 
   {
-    category: "DATABASE & TOOLS",
+    cat: "Web Development",
     items: [
-      { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
-      { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
-      { name: "Socket.io", icon: <SiSocketdotio className="text-black dark:text-white" /> },
-      { name: "GitHub", icon: <FaGithub className="text-black dark:text-white" /> },
+      { name: "React.js", icon: <FaReact />, color: "#61dafb" },
+      { name: "Node.js", icon: <FaNodeJs />, color: "#68a063" },
+      { name: "Express.js", icon: <SiExpress />, color: "#000000" },
+      { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06b6d4" },
+      { name: "REST APIs", icon: <FaServer />, color: "#6366f1" },
     ],
   },
 
   {
-    category: "MOBILE",
+    cat: "Tools & Platforms",
     items: [
-      { name: "Flutter", icon: <SiFlutter className="text-blue-500" /> },
+      { name: "GitHub", icon: <FaGithub />, color: "#181717" },
+      { name: "Jupyter", icon: <SiJupyter />, color: "#f37626" },
+      { name: "VS Code", icon: <SiVisualstudiocode />, color: "#007acc" },
+      { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
+      { name: "Netlify", icon: <SiNetlify />, color: "#00c7b7" },
+      { name: "Streamlit", icon: <SiStreamlit />, color: "#ff4b4b" },
     ],
   },
 ];
