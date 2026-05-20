@@ -4,55 +4,139 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ✅ Title -->
-    <title>Krushil Modi – Software Developer | Portfolio</title>
+    <!-- ═══════════════════════════════════════════
+         PRECONNECT — load external resources faster
+    ═══════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://api.web3forms.com" crossorigin />
 
-    <!-- ✅ Meta Description -->
+    <!-- Tabler Icons (for skill pill icons in App.jsx) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+    />
+
+    <!-- ═══════════════════════════════════════════
+         PRIMARY META
+    ═══════════════════════════════════════════ -->
+    <title>Krushil Modi — AI/ML Engineer & Full-Stack Developer | Portfolio</title>
+
     <meta
       name="description"
-      content="Welcome to the portfolio of Krushil Modi, a passionate software developer skilled in MERN, Django, and cloud technologies. Explore my projects, skills, education, and certifications."
+      content="Portfolio of Krushil Modi — MSc Big Data Analysis student at St. Xavier's College, Ahmedabad. Specialising in AI/ML pipelines, MERN stack web apps, and data analytics. Open to internships in AI, Software Development, and Data Analysis."
     />
-
-    <!-- ✅ Meta Keywords (optional but outdated for SEO) -->
     <meta
       name="keywords"
-      content="Krushil Modi, software developer, MERN stack, React.js, portfolio, web development, big data, JavaScript, tailwind portfolio"
+      content="Krushil Modi, AI ML Engineer, MERN Stack Developer, React.js, Python, Scikit-learn, Big Data, Data Analyst, Portfolio, Ahmedabad, Full Stack Developer, Django, MongoDB"
     />
-
-    <!-- ✅ Author -->
     <meta name="author" content="Krushil Modi" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 
-    <!-- ✅ Open Graph (for social sharing) -->
-    <meta property="og:title" content="Krushil Modi – Software Developer" />
+    <!-- ═══════════════════════════════════════════
+         CANONICAL & THEME
+    ═══════════════════════════════════════════ -->
+    <link rel="canonical" href="https://krushilmodi.netlify.app/" />
+    <meta name="theme-color" content="#4f46e5" />
+
+    <!-- ═══════════════════════════════════════════
+         OPEN GRAPH (Facebook / LinkedIn / WhatsApp)
+    ═══════════════════════════════════════════ -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://krushilmodi.netlify.app/" />
+    <meta property="og:site_name"   content="Krushil Modi Portfolio" />
+    <meta property="og:locale"      content="en_IN" />
+    <meta property="og:title"       content="Krushil Modi — AI/ML Engineer & Full-Stack Developer" />
     <meta
       property="og:description"
-      content="Explore projects, skills, and experience of Krushil Modi, a passionate full-stack developer."
+      content="Explore projects, ML research, certifications, and skills of Krushil Modi — MSc Big Data Analysis student seeking AI/ML & Software Development internships."
     />
-    <meta property="og:image" content="/profile.jpg" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-domain.com" />
+    <meta property="og:image"       content="https://krushilmodi.netlify.app/profile.jpg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"   content="Krushil Modi — AI/ML Engineer & Full-Stack Developer" />
 
-    <!-- ✅ Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Krushil Modi – Software Developer" />
+    <!-- ═══════════════════════════════════════════
+         TWITTER CARD
+    ═══════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:site"        content="@KrushilModi" />
+    <meta name="twitter:creator"     content="@KrushilModi" />
+    <meta name="twitter:title"       content="Krushil Modi — AI/ML Engineer & Full-Stack Developer" />
     <meta
       name="twitter:description"
-      content="Explore the portfolio of Krushil Modi. Projects, skills, certifications, and more."
+      content="MSc Big Data student | ML pipelines, MERN stack, data analytics | Seeking AI/ML & SWE internships."
     />
-    <meta name="twitter:image" content="/profile.jpg" />
+    <meta name="twitter:image"       content="https://krushilmodi.netlify.app/profile.jpg" />
+    <meta name="twitter:image:alt"   content="Krushil Modi portfolio preview" />
 
-    <!-- ✅ Favicon -->
-    <link rel="icon" type="image/png" href="/profile.jpg" />
+    <!-- ═══════════════════════════════════════════
+         FAVICON (multi-size)
+    ═══════════════════════════════════════════ -->
+    <link rel="icon"             type="image/png" sizes="32x32" href="/profile.jpg" />
+    <link rel="icon"             type="image/png" sizes="16x16" href="/profile.jpg" />
+    <link rel="apple-touch-icon" sizes="180x180"               href="/profile.jpg" />
 
-    <!-- ✅ Canonical URL -->
-    <link rel="canonical" href="https://your-domain.com" />
+    <!-- ═══════════════════════════════════════════
+         STRUCTURED DATA — Person schema (Google rich results)
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Krushil Modi",
+      "url": "https://krushilmodi.netlify.app/",
+      "image": "https://krushilmodi.netlify.app/profile.jpg",
+      "jobTitle": "AI/ML Engineer & Full-Stack Developer",
+      "description": "MSc Big Data Analysis student at St. Xavier's College, Ahmedabad. Specialising in ML pipelines, MERN stack development, and data analytics.",
+      "email": "krushilmodi1234@gmail.com",
+      "telephone": "+917863868115",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ahmedabad",
+        "addressRegion": "Gujarat",
+        "addressCountry": "IN"
+      },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "St. Xavier's College (Autonomous), Ahmedabad"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Indus University, Ahmedabad"
+        }
+      ],
+      "knowsAbout": [
+        "Machine Learning", "Python", "React.js", "MERN Stack",
+        "Data Analysis", "Scikit-learn", "SQL", "MongoDB",
+        "Big Data", "Django", "Node.js"
+      ],
+      "sameAs": [
+        "https://github.com/Krushilmodi1",
+        "https://www.linkedin.com/in/krushil-modi-803037268/"
+      ]
+    }
+    </script>
 
-    <!-- ✅ Theme color for mobile -->
-    <meta name="theme-color" content="#1e40af" />
-
-    <!-- ✅ Add any analytics or tracking scripts here -->
+    <!-- ═══════════════════════════════════════════
+         STRUCTURED DATA — WebSite schema (enables sitelinks search)
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Krushil Modi Portfolio",
+      "url": "https://krushilmodi.netlify.app/",
+      "description": "Portfolio website of Krushil Modi — AI/ML Engineer & Full-Stack Developer",
+      "author": {
+        "@type": "Person",
+        "name": "Krushil Modi"
+      }
+    }
+    </script>
 
   </head>
+
   <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all font-sans">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
