@@ -1,8 +1,3 @@
-// App.jsx
-// npm install react-hot-toast lucide-react   (if not already installed)
-// Add to index.html <head>:
-// <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
-
 import React, { useState, useRef, useEffect } from "react";
 import {
   Sun, Moon, ExternalLink, Github, Linkedin,
