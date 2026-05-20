@@ -344,10 +344,7 @@ export default function App() {
               </p>
 
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                <a href="https://krushilmodi.netlify.app/" target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-700 active:scale-95 transition font-medium text-sm">
-                  <FaGlobe size={12} /> View Portfolio
-                </a>
+               
                 <button onClick={() => setShowModal(true)}
                   className="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 transition font-medium text-sm">
                   <FaEnvelope size={12} /> Contact Me
