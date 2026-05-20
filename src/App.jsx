@@ -253,27 +253,6 @@ const CERTS = [
   { title: "AI Tools & Applications",   source: "Skill Nation", icon: "🧠", bg: "bg-pink-50 dark:bg-pink-900/20",   text: "text-pink-700 dark:text-pink-300" },
 ];
 
-// ─── Skill Pill ───────────────────────────────────────────────────────────────
-function SkillPill({ item }) {
-  const isObj = typeof item === "object";
-  return (
-    <span className="skill-pill flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 shadow-sm cursor-default select-none">
-      {isObj && (
-        <i
-          className={`ti ${item.tabler}`}
-          style={{ fontSize: 15, color: item.color, lineHeight: 1 }}
-          aria-hidden="true"
-        />
-      )}
-      {isObj ? item.label : item}
-      {isObj && item.suffix && (
-        <span style={{ fontSize: 11, marginLeft: -3, color: item.color, fontWeight: 700 }}>
-          {item.suffix}
-        </span>
-      )}
-    </span>
-  );
-}
 
 // ─── App ──────────────────────────────────────────────────────────────────────
 const App = () => {
@@ -577,41 +556,43 @@ const App = () => {
         {/* ── Skills ── */}
 <section id="skills" className="px-6 py-20 max-w-7xl mx-auto">
 
-  <h3 className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-16">
-    Skills
-  </h3>
+  <div className="flex items-center justify-center gap-3 mb-16">
+    <Code className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
+
+    <h3 className="text-5xl font-extrabold text-indigo-600 dark:text-indigo-400">
+      Skills
+    </h3>
+  </div>
 
   <div className="space-y-14">
 
     {SKILLS.map((group, index) => (
       <div key={index}>
 
-        {/* Category */}
-        <h4 className="text-sm tracking-[3px] font-bold text-gray-400 uppercase mb-8">
+        <h4 className="text-lg tracking-[3px] font-bold text-gray-400 uppercase mb-8">
           {group.category}
         </h4>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
 
           {group.items.map((skill, i) => (
             <div
               key={i}
               className="
-              bg-white dark:bg-gray-900
-              border border-gray-200 dark:border-gray-700
-              rounded-2xl
-              h-28
-              flex flex-col items-center justify-center
-              shadow-sm
-              hover:shadow-xl
-              hover:-translate-y-2
-              transition-all duration-300
-              cursor-pointer
+                bg-white dark:bg-gray-900
+                border border-gray-200 dark:border-gray-700
+                rounded-2xl
+                h-32
+                flex flex-col items-center justify-center
+                shadow-sm
+                hover:shadow-2xl
+                hover:-translate-y-2
+                transition-all duration-300
+                cursor-pointer
               "
             >
 
-              <div className="text-4xl mb-3">
+              <div className="text-5xl mb-4">
                 {skill.icon}
               </div>
 
