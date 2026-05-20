@@ -493,12 +493,10 @@ export default function App() {
               </p>
 
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                {/* Download CV — uncomment when CV is ready
-                <a href="/KrushilModi_CV.pdf" download
+                <a href="https://docs.google.com/document/d/1ngGxkqG3lVIJSdmdA-Il-TCNrzacTAon/export?format=pdf" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-700 active:scale-95 transition font-medium text-sm">
                   <FaDownload size={12} /> Download CV
                 </a>
-                */}
                 <a href="https://www.linkedin.com/in/krushil-modi-803037268/" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 active:scale-95 transition font-medium text-sm">
                   <FaLinkedin size={12} /> LinkedIn
