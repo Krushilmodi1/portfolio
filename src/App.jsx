@@ -17,7 +17,7 @@ function useTypingEffect(words, speed = 100, pause = 1800) {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
-
+  
   useEffect(() => {
     const current = words[wordIndex % words.length];
     const timeout = setTimeout(() => {
@@ -154,27 +154,61 @@ const App = () => {
   }, []);
 
   // ── Web3Forms submit ──
-  const handleContactSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    const formData = new FormData(event.target);
-    formData.append("access_key", "73e6f4ee-4874-4f03-9d4a-a78c0a5f0b2b");
-    try {
-      const res  = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
-      const data = await res.json();
-      if (data.success) {
-        toast.success("✅ Message sent! I'll reply within 24 hours.");
-        formRef.current?.reset();
-        setShowModal(false);
-      } else {
-        toast.error("❌ Something went wrong. Please try again.");
+  // ── STATES ──
+const [showModal, setShowModal] = useState(false);
+const [isSubmitting, setIsSubmitting] = useState(false);
+
+// ── CONTACT FORM SUBMIT ──
+const handleContactSubmit = async (e) => {
+  e.preventDefault();
+
+  setIsSubmitting(true);
+
+  const formData = new FormData(e.target);
+
+  formData.append(
+    "access_key",
+    "73e6f4ee-4874-4f03-9d4a-a78c0a5f0b2b"
+  );
+
+  formData.append(
+    "subject",
+    "New Portfolio Contact Message"
+  );
+
+  try {
+    const response = await fetch(
+      "https://api.web3forms.com/submit",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
       }
-    } catch {
-      toast.error("❌ Network error. Please check your connection.");
-    } finally {
-      setIsSubmitting(false);
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    if (result.success) {
+      toast.success("✅ Message Sent Successfully!");
+
+      e.target.reset();
+
+      setShowModal(false);
+    } else {
+      toast.error(result.message || "❌ Something went wrong");
     }
-  };
+  } catch (error) {
+    console.log(error);
+
+    toast.error("❌ Network Error");
+  }
+
+  setIsSubmitting(false);
+};
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const smoothNav   = (e, href) => { e.preventDefault(); setMenuOpen(false); document.querySelector(href)?.scrollIntoView({ behavior: "smooth" }); };
@@ -442,57 +476,126 @@ const App = () => {
         </section>
 
         {/* ── Contact ── */}
-        <section id="contact" className="px-6 py-16 max-w-2xl mx-auto text-center">
-          <h3 className="reveal text-2xl sm:text-3xl font-bold flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400 mb-3">
-            <MessageCircle className="w-7 h-7"/> Contact Me
-          </h3>
-          <p className="reveal text-gray-500 dark:text-gray-400 mb-7">
-            Got a project, internship opportunity, or question? I'd love to hear from you.
-          </p>
-          <button onClick={() => setShowModal(true)}
-            className="reveal px-7 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl shadow-md hover:shadow-lg transition hover:scale-105 font-semibold">
-            📩 Open Contact Form
+      {/* ── Contact Section ── */}
+<section
+  id="contact"
+  className="px-6 py-16 max-w-2xl mx-auto text-center"
+>
+  <h3 className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+    Contact Me
+  </h3>
+
+  <p className="text-gray-500 dark:text-gray-400 mb-8">
+    Got a project, internship opportunity, or question?
+    I'd love to hear from you.
+  </p>
+
+  <button
+    onClick={() => setShowModal(true)}
+    className="px-7 py-3 bg-gradient-to-r from-blue-600 to-indigo-600
+    text-white rounded-xl shadow-md hover:scale-105 transition"
+  >
+    📩 Open Contact Form
+  </button>
+
+  {/* ── MODAL ── */}
+  {showModal && (
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
+      <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md relative">
+
+        {/* Close Button */}
+        <button
+          onClick={() => setShowModal(false)}
+          className="absolute top-3 right-4 text-gray-400 hover:text-red-500"
+        >
+          ✖
+        </button>
+
+        <h4 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+          Let's Connect
+        </h4>
+
+        <p className="text-sm text-gray-400 mb-6">
+          krushilmodi1234@gmail.com
+        </p>
+
+        {/* FORM */}
+        <form
+          onSubmit={handleContactSubmit}
+          className="space-y-4 text-left"
+        >
+          {/* Name */}
+          <div>
+            <label className="block text-sm mb-1">
+              Your Name
+            </label>
+
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Enter your name"
+              className="w-full px-4 py-3 rounded-lg
+              bg-gray-100 dark:bg-gray-800
+              text-gray-900 dark:text-white
+              focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm mb-1">
+              Your Email
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Enter your email"
+              className="w-full px-4 py-3 rounded-lg
+              bg-gray-100 dark:bg-gray-800
+              text-gray-900 dark:text-white
+              focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          {/* Message */}
+          <div>
+            <label className="block text-sm mb-1">
+              Message
+            </label>
+
+            <textarea
+              name="message"
+              rows="5"
+              required
+              placeholder="Write your message..."
+              className="w-full px-4 py-3 rounded-lg
+              bg-gray-100 dark:bg-gray-800
+              text-gray-900 dark:text-white
+              focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            ></textarea>
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-3 rounded-lg
+            bg-gradient-to-r from-blue-600 to-indigo-600
+            hover:from-blue-700 hover:to-indigo-700
+            text-white font-semibold transition"
+          >
+            {isSubmitting
+              ? "Sending..."
+              : "🚀 Send Message"}
           </button>
-
-          {/* ── Modal ── */}
-          {showModal && (
-            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 px-4">
-              <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-md relative">
-                <button onClick={() => setShowModal(false)}
-                  className="absolute top-3 right-4 text-gray-400 hover:text-red-500 text-xl transition">✖</button>
-                <h4 className="text-xl font-semibold mb-1 text-blue-600 dark:text-blue-400">Let's Connect</h4>
-                <p className="text-xs text-gray-400 dark:text-gray-500 mb-5">krushilmodi1234@gmail.com</p>
-
-                <form ref={formRef} onSubmit={handleContactSubmit} className="space-y-4 text-left">
-                  {/* Web3Forms key */}
-                  <input type="hidden" name="access_key"  value="73e6f4ee-4874-4f03-9d4a-a78c0a5f0b2b"/>
-                  <input type="hidden" name="subject"     value="New message from Portfolio — Krushil Modi"/>
-                  <input type="hidden" name="from_name"   value="Portfolio Contact Form"/>
-
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Your Name</label>
-                    <input type="text" name="name" placeholder="Jane Doe" required
-                      className="w-full px-4 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"/>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Your Email</label>
-                    <input type="email" name="email" placeholder="jane@example.com" required
-                      className="w-full px-4 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"/>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Message</label>
-                    <textarea name="message" rows="4" placeholder="Tell me about your project or opportunity..." required
-                      className="w-full px-4 py-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition resize-none"/>
-                  </div>
-                  <button type="submit" disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-2.5 rounded-lg transition">
-                    {isSubmitting ? "Sending…" : "🚀 Send Message"}
-                  </button>
-                </form>
-              </div>
-            </div>
-          )}
-        </section>
+        </form>
+      </div>
+    </div>
+  )}
+</section>
 
         {/* ── Footer ── */}
         <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-8 mt-4 text-center">
