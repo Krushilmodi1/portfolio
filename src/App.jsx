@@ -3,7 +3,7 @@ import {
   FaSun, FaMoon, FaGithub, FaLinkedin, FaGlobe,
   FaJava, FaPython, FaJs, FaReact, FaNodeJs,
   FaCss3Alt, FaCode, FaBars, FaTimes,
-  FaExternalLinkAlt, FaEnvelope, FaMapMarkerAlt, FaPhone,
+  FaExternalLinkAlt, FaEnvelope, FaMapMarkerAlt, FaPhone, FaDownload,
   FaBrain, FaRobot, FaServer, FaChartBar, FaProjectDiagram,
 } from "react-icons/fa";
 import {
@@ -113,9 +113,9 @@ const CERTS = [
 ];
 
 const SOCIAL = [
-  { label: "GitHub",    icon: <FaGithub />,   url: "https://github.com/Krushilmodi1",                          color: "#181717" },
-  { label: "LinkedIn",  icon: <FaLinkedin />, url: "https://www.linkedin.com/in/krushil-modi-803037268/",       color: "#0a66c2" },
-  { label: "Portfolio", icon: <FaGlobe />,    url: "https://krushilmodi.netlify.app/",                          color: "#6366f1" },
+  { label: "GitHub",   icon: <FaGithub />,   url: "https://github.com/Krushilmodi1",                     color: "#181717" },
+  { label: "LinkedIn", icon: <FaLinkedin />, url: "https://www.linkedin.com/in/krushil-modi-803037268/", color: "#0a66c2" },
+  // { label: "Portfolio", icon: <FaGlobe />, url: "https://krushilmodi.netlify.app/", color: "#6366f1" },
 ];
 
 /* ─── HOOKS ─────────────────────────────────────────── */
@@ -218,6 +218,155 @@ function SectionTitle({ title, subtitle }) {
       {subtitle && <p className="text-gray-400 text-sm mt-1">{subtitle}</p>}
       <div className="mt-3 h-1 w-12 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full" />
     </div>
+  );
+}
+
+/* ─── SKILLS SECTION ────────────────────────────────── */
+
+// Proficiency level added to each skill (0–100)
+const SKILLS_WITH_LEVEL = [
+  {
+    cat: "Programming",
+    items: [
+      { name: "Python",     icon: <FaPython />,      color: "#3776ab", level: 88 },
+      { name: "Java",       icon: <FaJava />,         color: "#f89820", level: 72 },
+      { name: "JavaScript", icon: <SiJavascript />,  color: "#f7df1e", level: 75 },
+      { name: "SQL",        icon: <SiMysql />,        color: "#4479a1", level: 80 },
+      { name: "C++",        icon: <SiCplusplus />,   color: "#00599c", level: 65 },
+    ],
+  },
+  {
+    cat: "AI / ML",
+    items: [
+      { name: "Scikit-learn",  icon: <SiScikitlearn />,   color: "#f7931e", level: 85 },
+      { name: "Pandas",        icon: <SiPandas />,         color: "#e040fb", level: 87 },
+      { name: "NumPy",         icon: <SiNumpy />,           color: "#4fc3f7", level: 83 },
+      { name: "Matplotlib",    icon: <SiPlotly />,         color: "#11557c", level: 78 },
+      { name: "EDA",           icon: <FaChartBar />,       color: "#6366f1", level: 90 },
+      { name: "Random Forest", icon: <FaBrain />,          color: "#22c55e", level: 82 },
+      { name: "SVM",           icon: <FaRobot />,          color: "#8b5cf6", level: 75 },
+      { name: "K-Means",       icon: <FaProjectDiagram />, color: "#f97316", level: 78 },
+    ],
+  },
+  {
+    cat: "Web Dev",
+    items: [
+      { name: "React.js",    icon: <FaReact />,       color: "#61dafb", level: 82 },
+      { name: "Node.js",     icon: <FaNodeJs />,      color: "#68a063", level: 78 },
+      { name: "Express.js",  icon: <SiExpress />,     color: "#888888", level: 75 },
+      { name: "MongoDB",     icon: <SiMongodb />,     color: "#47a248", level: 76 },
+      { name: "Tailwind",    icon: <SiTailwindcss />, color: "#06b6d4", level: 85 },
+      { name: "REST APIs",   icon: <FaServer />,      color: "#6366f1", level: 80 },
+    ],
+  },
+  {
+    cat: "Tools",
+    items: [
+      { name: "GitHub",    icon: <FaGithub />,          color: "#6366f1", level: 85 },
+      { name: "Jupyter",   icon: <SiJupyter />,         color: "#f37626", level: 88 },
+      { name: "VS Code",   icon: <SiVisualstudiocode />,color: "#007acc", level: 90 },
+      { name: "Postman",   icon: <SiPostman />,         color: "#ff6c37", level: 75 },
+      { name: "Netlify",   icon: <SiNetlify />,         color: "#00c7b7", level: 78 },
+      { name: "Streamlit", icon: <SiStreamlit />,       color: "#ff4b4b", level: 80 },
+    ],
+  },
+];
+
+function SkillBar({ level, color }) {
+  const ref = useRef(null);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setWidth(level); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [level]);
+  return (
+    <div ref={ref} className="w-full h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden mt-2">
+      <div
+        className="h-full rounded-full transition-all duration-700 ease-out"
+        style={{ width: `${width}%`, background: color }}
+      />
+    </div>
+  );
+}
+
+function SkillsSection() {
+  const [activeTab, setActiveTab] = useState(0);
+  const group = SKILLS_WITH_LEVEL[activeTab];
+
+  return (
+    <section id="skills" className="bg-white dark:bg-gray-900 py-20">
+      <div className="max-w-6xl mx-auto px-4">
+        <SectionTitle title="Skills" subtitle="Technologies & tools I work with" />
+
+        {/* Tab bar */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {SKILLS_WITH_LEVEL.map((g, i) => (
+            <button
+              key={g.cat}
+              onClick={() => setActiveTab(i)}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all border ${
+                activeTab === i
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-md shadow-indigo-200 dark:shadow-indigo-900"
+                  : "bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600"
+              }`}
+            >
+              {g.cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {group.items.map(skill => (
+            <div
+              key={skill.name}
+              className="group bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 flex flex-col items-center border border-gray-100 dark:border-gray-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            >
+              {/* Icon with glow ring on hover */}
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110"
+                style={{ background: skill.color + "15" }}
+              >
+                <span className="text-3xl" style={{ color: skill.color }}>{skill.icon}</span>
+              </div>
+
+              <span className="text-sm font-semibold text-center text-gray-700 dark:text-gray-200 mb-1 leading-tight">
+                {skill.name}
+              </span>
+
+              {/* Proficiency label */}
+              <span className="text-xs font-medium mb-1" style={{ color: skill.color }}>
+                {skill.level >= 85 ? "Advanced" : skill.level >= 75 ? "Proficient" : "Familiar"}
+              </span>
+
+              {/* Animated bar */}
+              <SkillBar level={skill.level} color={skill.color} />
+            </div>
+          ))}
+        </div>
+
+        {/* Summary strip */}
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { label: "Programming Languages", value: "5",  color: "#6366f1" },
+            { label: "ML / AI Tools",          value: "8",  color: "#22c55e" },
+            { label: "Web Technologies",        value: "6",  color: "#0ea5e9" },
+            { label: "Dev Tools & Platforms",   value: "6+", color: "#f97316" },
+          ].map(s => (
+            <div key={s.label}
+              className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-100 dark:border-gray-700 text-center">
+              <div className="text-3xl font-extrabold mb-0.5" style={{ color: s.color }}>{s.value}</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 leading-snug">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -344,7 +493,16 @@ export default function App() {
               </p>
 
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-               
+                {/* Download CV — uncomment when CV is ready
+                <a href="/KrushilModi_CV.pdf" download
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-700 active:scale-95 transition font-medium text-sm">
+                  <FaDownload size={12} /> Download CV
+                </a>
+                */}
+                <a href="https://www.linkedin.com/in/krushil-modi-803037268/" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 active:scale-95 transition font-medium text-sm">
+                  <FaLinkedin size={12} /> LinkedIn
+                </a>
                 <button onClick={() => setShowModal(true)}
                   className="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 transition font-medium text-sm">
                   <FaEnvelope size={12} /> Contact Me
@@ -427,27 +585,7 @@ export default function App() {
         </section>
 
         {/* ── SKILLS ── */}
-        <section id="skills" className="bg-white dark:bg-gray-900 py-20">
-          <div className="max-w-6xl mx-auto px-4">
-            <SectionTitle title="Skills" subtitle="Technologies & tools I work with" />
-            <div className="space-y-8">
-              {SKILLS.map(group => (
-                <div key={group.cat}>
-                  <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">{group.cat}</h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-                    {group.items.map(skill => (
-                      <div key={skill.name}
-                        className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 flex flex-col items-center gap-2 hover:shadow-md hover:-translate-y-0.5 transition-all border border-gray-100 dark:border-gray-700">
-                        <span className="text-2xl" style={{ color: skill.color }}>{skill.icon}</span>
-                        <span className="text-xs font-medium text-center text-gray-700 dark:text-gray-300">{skill.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <SkillsSection />
 
         {/* ── PROJECTS ── */}
         <section id="projects" className="max-w-6xl mx-auto px-4 py-20">
