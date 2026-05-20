@@ -1,16 +1,3 @@
-// App.jsx
-// ─────────────────────────────────────────────────────────────────────────────
-// IMPORTANT — WHY EMAILS WEREN'T ARRIVING:
-//   Web3Forms blocks submissions from un-whitelisted domains.
-//   FIX → Go to https://web3forms.com/dashboard → Settings → Add your domain
-//          (e.g. krushilmodi.netlify.app  AND  localhost for dev).
-//   This file also sends as JSON (more reliable than FormData) and adds a
-//   honeypot field to block bots. A fallback mailto link is always shown.
-// ─────────────────────────────────────────────────────────────────────────────
-// npm install react-hot-toast lucide-react   (if not already installed)
-// index.html <head> must contain:
-//   <link rel="stylesheet"
-//     href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
 
 import React, { useState, useRef, useEffect } from "react";
 import {
@@ -21,6 +8,27 @@ import {
 import profilePic from "./profile.jpg";
 import toast, { Toaster } from "react-hot-toast";
 import "./index.css";
+import {
+  FaReact,
+  FaNodeJs,
+  FaJava,
+  FaPython,
+  FaHtml5,
+  FaCss3Alt,
+  FaGithub,
+} from "react-icons/fa"
+import {
+  SiJavascript,
+  SiTailwindcss,
+  SiRedux,
+  SiSpringboot,
+  SiDjango,
+  SiPhp,
+  SiMongodb,
+  SiMysql,
+  SiSocketdotio,
+  SiFlutter,
+} from "react-icons/si";
 
 // ─── Typing Effect ────────────────────────────────────────────────────────────
 function useTypingEffect(words, speed = 100, pause = 1800) {
@@ -70,7 +78,49 @@ function useScrollReveal() {
     return () => observer.disconnect();
   }, []);
 }
+//skill
+const SKILLS = [
+  {
+    category: "FRONTEND",
+    items: [
+      { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
+      { name: "JavaScript", icon: <SiJavascript className="text-yellow-400" /> },
+      { name: "Redux", icon: <SiRedux className="text-purple-500" /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
+      { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
+      { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
+    ],
+  },
 
+  {
+    category: "BACKEND",
+    items: [
+      { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
+      { name: "Spring Boot", icon: <SiSpringboot className="text-green-600" /> },
+      { name: "Java", icon: <FaJava className="text-orange-500" /> },
+      { name: "Python", icon: <FaPython className="text-blue-500" /> },
+      { name: "Django", icon: <SiDjango className="text-green-900 dark:text-white" /> },
+      { name: "PHP", icon: <SiPhp className="text-indigo-400" /> },
+    ],
+  },
+
+  {
+    category: "DATABASE & TOOLS",
+    items: [
+      { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
+      { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
+      { name: "Socket.io", icon: <SiSocketdotio className="text-black dark:text-white" /> },
+      { name: "GitHub", icon: <FaGithub className="text-black dark:text-white" /> },
+    ],
+  },
+
+  {
+    category: "MOBILE",
+    items: [
+      { name: "Flutter", icon: <SiFlutter className="text-blue-500" /> },
+    ],
+  },
+];
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const NAV_LINKS = [
   { label: "About",          href: "#about" },
@@ -524,25 +574,61 @@ const App = () => {
         </section>
 
         {/* ── Skills ── */}
-        <section id="skills" className="px-6 py-16 max-w-5xl mx-auto">
-          <h3 className="reveal text-3xl font-extrabold flex items-center gap-2 justify-center text-indigo-600 dark:text-indigo-400 mb-10">
-            <Code className="w-7 h-7" /> Skills
-          </h3>
-          <div className="space-y-6">
-            {SKILLS.map((group, gi) => (
-              <div key={gi} className="reveal">
-                <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-1.5">
-                  <span>{group.icon}</span> {group.group}
-                </p>
-                <div className="flex flex-wrap gap-2 stagger">
-                  {group.items.map((skill, si) => (
-                    <SkillPill key={si} item={skill} />
-                  ))}
-                </div>
+        {/* ── Skills ── */}
+<section id="skills" className="px-6 py-20 max-w-7xl mx-auto">
+
+  <h3 className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-16">
+    Skills
+  </h3>
+
+  <div className="space-y-14">
+
+    {SKILLS.map((group, index) => (
+      <div key={index}>
+
+        {/* Category */}
+        <h4 className="text-sm tracking-[3px] font-bold text-gray-400 uppercase mb-8">
+          {group.category}
+        </h4>
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
+
+          {group.items.map((skill, i) => (
+            <div
+              key={i}
+              className="
+              bg-white dark:bg-gray-900
+              border border-gray-200 dark:border-gray-700
+              rounded-2xl
+              h-28
+              flex flex-col items-center justify-center
+              shadow-sm
+              hover:shadow-xl
+              hover:-translate-y-2
+              transition-all duration-300
+              cursor-pointer
+              "
+            >
+
+              <div className="text-4xl mb-3">
+                {skill.icon}
               </div>
-            ))}
-          </div>
-        </section>
+
+              <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                {skill.name}
+              </p>
+
+            </div>
+          ))}
+
+        </div>
+
+      </div>
+    ))}
+
+  </div>
+</section>
 
         {/* ── Projects ── */}
         <section id="projects" className="px-6 py-16 max-w-6xl mx-auto">
