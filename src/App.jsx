@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import profileImg from "./profile.jpg";
 import {
   FaSun, FaMoon, FaGithub, FaLinkedin, FaGlobe,
   FaJava, FaPython, FaJs, FaReact, FaNodeJs,
@@ -521,10 +522,13 @@ export default function App() {
             <div className="flex-shrink-0">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 to-blue-500 rounded-full blur-xl opacity-30 scale-110" />
-                <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
-                  {/* Replace src with your actual photo import if available */}
-                  <span className="text-white font-extrabold text-7xl select-none">KM</span>
-                </div>
+                <div className="relative w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
+  <img
+    src={profileImg}
+    alt="Krushil Modi"
+    className="w-full h-full object-cover object-top"
+  />
+</div>
                 <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
                   Available
                 </div>
