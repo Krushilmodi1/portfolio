@@ -124,8 +124,8 @@ const PROJECTS = [
       "REST APIs",
     ],
     color: "#ef4444",
-    github: "https://github.com/Krushilmodi1",
-    live: "https://krushilmodi.netlify.app/",
+    github: "https://github.com/Krushilmodi1/upi-fraud-detection",
+    live: "https://upi-frauddetection.netlify.app/",
     stats: [
       { label: "Accuracy", value: "97.04%" },
       { label: "ROC-AUC", value: "0.9591" },
@@ -178,8 +178,8 @@ const PROJECTS = [
     desc: "Automated timetable generator using constraint-satisfaction logic in Django, eliminating scheduling conflicts. Clean frontend enabling non-technical staff to configure constraints, view schedules, and export timetables.",
     tech: ["Django", "Python", "JavaScript", "HTML/CSS"],
     color: "#f97316",
-    github: "https://github.com/Krushilmodi1",
-    live: "https://krushilmodi.netlify.app/",
+    github: "https://github.com/Krushilmodi1/upi-fraud-detection",
+    live: "https://upi-frauddetection.netlify.app/",
   },
 ];
 
