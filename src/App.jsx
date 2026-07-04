@@ -185,31 +185,38 @@ const PROJECTS = [
 
 const CERTS = [
   {
-    name: "Machine Learning",
+    name: "Intro to Machine Learning",
     source: "Kaggle",
     icon: "🤖",
     color: "#3b82f6",
-    link: "",
+    link: "https://www.kaggle.com/learn/certification/krushilmodi19/intro-to-machine-learning",
+  },
+  {
+    name: "Feature Engineering",
+    source: "Kaggle",
+    icon: "⚙️",
+    color: "#6366f1",
+    link: "https://www.kaggle.com/learn/certification/krushilmodi19/feature-engineering",
   },
   {
     name: "Data Cleaning",
     source: "Kaggle",
     icon: "🧹",
     color: "#0ea5e9",
-    link: "",
+    link: "https://www.kaggle.com/learn/certification/krushilmodi19/data-cleaning",
   },
   {
     name: "Data Engineering",
     source: "Kaggle",
-    icon: "⚙️",
-    color: "#6366f1",
-    link: "",
+    icon: "🗄️",
+    color: "#8b5cf6",
+    link: "https://www.credly.com/badges/3d8cc920-458c-4077-9ea9-cd39209c548b/public_url",
   },
   {
     name: "Prompt Engineering for AI",
     source: "Kaggle",
     icon: "💬",
-    color: "#8b5cf6",
+    color: "#ec4899",
     link: "",
   },
   {
@@ -224,28 +231,21 @@ const CERTS = [
     source: "Udemy",
     icon: "📘",
     color: "#f97316",
-    link: "",
-  },
-  {
-    name: "Business Management",
-    source: "Udemy",
-    icon: "📊",
-    color: "#eab308",
-    link: "",
+    link: "https://www.udemy.com/certificate/UC-f787606c-c5aa-4cb3-8b82-b598557c5fc6/",
   },
   {
     name: "C and C++ Programming",
     source: "Udemy",
     icon: "📟",
     color: "#10b981",
-    link: "",
+    link: "https://www.udemy.com/certificate/UC-31321bd5-c7ba-4e8b-9ac7-d94a4c3d2401/",
   },
   {
     name: "AI Tools & Applications",
     source: "Skill Nation",
     icon: "🧠",
-    color: "#ec4899",
-    link: "",
+    color: "#eab308",
+    link: "https://www.credly.com/badges/3d8cc920-458c-4077-9ea9-cd39209c548b/public_url",
   },
 ];
 
@@ -1105,42 +1105,81 @@ export default function App() {
               title="Certifications"
               subtitle="9 industry certifications across Data Science, ML, AI & Software Engineering"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {CERTS.map((cert, idx) => (
-                <div
-                  key={idx}
-                  className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 border border-gray-100 dark:border-gray-700 hover:shadow-md hover:-translate-y-0.5 transition-all text-center"
-                >
-                  <div className="text-3xl mb-3 flex justify-center">
-                    {cert.icon}
-                  </div>
-                  {cert.link ? (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline leading-snug block"
-                    >
-                      {cert.name}{" "}
-                      <FaExternalLinkAlt size={8} className="inline ml-1" />
-                    </a>
-                  ) : (
-                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 leading-snug">
-                      {cert.name}
-                    </p>
-                  )}
-                  <p
-                    className="text-xs mt-1 font-semibold"
-                    style={{ color: cert.color }}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {CERTS.map((cert, idx) => {
+                const CardWrapper = cert.link ? "a" : "div";
+                return (
+                  <CardWrapper
+                    key={idx}
+                    href={cert.link || undefined}
+                    target={cert.link ? "_blank" : undefined}
+                    rel={cert.link ? "noopener noreferrer" : undefined}
+                    className={`group relative bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 border border-gray-100 dark:border-gray-700 transition-all duration-300 flex items-center gap-4
+              ${
+                cert.link
+                  ? "hover:shadow-lg hover:-translate-y-1 cursor-pointer hover:border-opacity-60"
+                  : "opacity-80"
+              }`}
+                    style={cert.link ? { "--cert-color": cert.color } : {}}
                   >
-                    {cert.source}
-                  </p>
-                </div>
-              ))}
+                    {/* Color accent bar */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+                      style={{ background: cert.color }}
+                    />
+
+                    {/* Icon bubble */}
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 text-3xl transition-transform duration-300 group-hover:scale-110"
+                      style={{ background: cert.color + "18" }}
+                    >
+                      {cert.icon}
+                    </div>
+
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-100 leading-snug">
+                        {cert.name}
+                      </p>
+                      <p
+                        className="text-xs font-bold mt-1"
+                        style={{ color: cert.color }}
+                      >
+                        {cert.source}
+                      </p>
+                    </div>
+
+                    {/* Link indicator */}
+                    {cert.link ? (
+                      <div
+                        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{ background: cert.color + "22" }}
+                      >
+                        <FaExternalLinkAlt
+                          size={10}
+                          style={{ color: cert.color }}
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <span className="text-gray-400 text-xs">—</span>
+                      </div>
+                    )}
+                  </CardWrapper>
+                );
+              })}
+            </div>
+
+            {/* Legend */}
+            <div className="mt-6 flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
+              <FaExternalLinkAlt size={9} />
+              <span>
+                Cards with an arrow icon are clickable — they open the verified
+                certificate.
+              </span>
             </div>
           </div>
         </section>
-
         {/* ── CONTACT ── */}
         <section id="contact" className="max-w-6xl mx-auto px-4 py-20">
           <SectionTitle
